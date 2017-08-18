@@ -1,0 +1,50 @@
+group 'com.workasintended'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'scala'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+
+ext {
+    appName = "chromaggus"
+    gdxVersion = '1.9.6'
+    ashleyVersion = '1.7.3' //ashley is an entity system
+    aiVersion = '1.8.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        scala {
+            srcDirs = ['src/main/scala', 'src/main/java']
+        }
+        java {
+            srcDirs = []
+        }
+    }
+    test {
+        scala {
+            srcDirs = ['src/test/scala', 'src/test/java']
+        }
+        java {
+            srcDirs = []
+        }
+    }
+}
+
+mainClassName = "com.workasintended.chromaggus.desktop.DesktopLauncher"
+
+dependencies {
+    compile 'org.scala-lang:scala-library:2.11.11'
+    compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+    compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+    compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+    compile "com.badlogicgames.gdx:gdx-ai:${aiVersion}"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+}
